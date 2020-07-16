@@ -6,7 +6,14 @@ var bodyParser	     = require("body-parser"),
 	app              = express();
 
 //APP CONFIG
-mongoose.connect("mongodb://localhost/blog_app", {useNewUrlParser : true, useUnifiedTopology: true, useFindAndModify: false});
+// Mongose Connection
+mongoose.connect("mongodb+srv://mmAkhtar:Akhtar@9577@cluster0.mcsba.mongodb.net/<dbname>?retryWrites=true&w=majority",{
+	useNewUrlParser: true,
+	useUnifiedTopology: true,
+	useFindAndModify: false});
+
+
+
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended:true}));
@@ -114,8 +121,9 @@ app.delete("/blogs/:id", function(req,res){
 	});
 });
 
+var port = process.env.PORT || 94;
 //Listen
-app.listen(94,function(){
+app.listen(port,function(){
 	console.log("Blog app Server Started")
 });
               
